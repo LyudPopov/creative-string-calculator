@@ -105,8 +105,15 @@ namespace StringCalculator
             return orig.Substring(start, orig.Length >= length ? length : orig.Length);
         }
 
+        /// <summary>
+        /// Try to parse header delimiter from numbers string.
+        /// </summary>
+        /// <param name="numbers">Numbers string.</param>
+        /// <param name="constraints">Constraint object.</param>
+        /// <returns></returns>
         private static char[] TryGetDelimHeader(string numbers, DelimiterHeaderConstraints constraints)
         {
+            // https://regex101.com/r/tXfHca/1
             string delimHeaderMatchPattern = @$"(?<={constraints.StartsWith}).*(?={constraints.EndsWith})";
 
             var match = Regex.Match(numbers, delimHeaderMatchPattern);
